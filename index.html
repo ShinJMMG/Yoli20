@@ -21,7 +21,7 @@
     .pantalla-clave {
       display: flex; background: linear-gradient(135deg, #ffb6c1, #ffe4e1); color: black;
     }
-    input[type='password'], input[type='file'] {
+    input[type='password'] {
       padding: 10px; font-size: 1.2em; border-radius: 8px; border: none;
       margin-top: 15px; outline: none; font-family: 'Great Vibes', cursive;
     }
@@ -62,7 +62,7 @@
     }
     .petalo {
       position: fixed; top: -50px; width: 25px; height: 25px;
-      background: url('img/petalo1.png') no-repeat center/contain;
+      background: url('mi-petalo.png') no-repeat center/contain;
       pointer-events: none; animation-name: caer;
       animation-timing-function: linear; animation-iteration-count: infinite;
     }
@@ -87,7 +87,6 @@
   <div class="pantalla-clave" id="pantallaClave">
     <h2>🔒 Ingresa la contraseña</h2>
     <input type="password" id="passwordInput" placeholder="Contraseña" />
-    <input type="file" id="uploadPetalo" accept="image/*" />
     <button onclick="verificarPassword()">Entrar</button>
   </div>
   <div class="pantalla-frases" id="pantallaFrases">
@@ -103,19 +102,6 @@
     Tu navegador no soporta audio HTML5.
   </audio>
   <script>
-    let petaloURL = 'img/petalo1.png';
-
-    document.getElementById('uploadPetalo').addEventListener('change', function (e) {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          petaloURL = event.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
     const frases = [
       'Hoy es un día especial porque el mundo celebra tu existencia.',
       'Tu sonrisa ilumina todo lo que toca.',
@@ -152,7 +138,6 @@
       function crearPetalo() {
         const petalo = document.createElement('div');
         petalo.classList.add('petalo');
-        petalo.style.backgroundImage = `url('${petaloURL}')`;
         petalo.style.left = Math.random() * window.innerWidth + 'px';
         petalo.style.animationDuration = 3 + Math.random() * 3 + 's';
         petalo.style.animationDelay = Math.random() * 5 + 's';
